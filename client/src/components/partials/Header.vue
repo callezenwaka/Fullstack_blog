@@ -2,12 +2,11 @@
   <div class="header">
     <ul class="nav_menu">
         <h3 class="logo">&hellip;&vellip;&hellip;</h3>
-        <li class="nav_item"><a class="nav_link" href="/blogs">Blogs</a></li>
-        <li class="nav_item"><a class="nav_link" href="/blogs/publish">Write Post</a></li>
-        <li class="nav_item"><a class="nav_link" href="/aboutUs">About</a></li>
-        <li class="nav_item"><a class="nav_link" href="/about">About us</a></li>
-        <li class="nav_item"><a class="nav_link" href="/career">Career</a></li>
-        <li class="nav_item"><a class="nav_link" href="/services">Services</a></li>
+        <li class="nav_item"><router-link class="nav_link" :to="{ name: 'index' }">Blogs</router-link></li>
+        <li class="nav_item"><router-link class="nav_link" :to="{ name: 'create' }">Publish Blog</router-link></li>
+        <li class="nav_item"><router-link class="nav_link" :to="{ name: 'about' }">About us</router-link></li>
+        <li class="nav_item"><router-link class="nav_link" :to="{ name: 'career' }">Career</router-link></li>
+        <li class="nav_item"><router-link class="nav_link" :to="{ name: 'services' }">Services</router-link></li>
     </ul>
   </div>
 </template>

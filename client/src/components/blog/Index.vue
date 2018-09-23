@@ -4,26 +4,62 @@
         <div class="main_container">
             <div class="page_content">
                 <div class="page_head"><h2 class="page_header">Latest News</h2><hr class="scotch-rule"></div>
+                <div v-show="loading" class="blog_container">
+                    <span class="page_message">Loading &hellip;</span>
+                </div>
+                <div class="blog_container" v-if="blogLength" v-for="post in posts" :key="post.id">
+                    <p class="blog_header"><strong>{{ post.title }}</strong></p><hr>
+                    <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).fromNow() }}</b></small></span></p>
+                    <!-- <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).calendar() }}</b></small></span></p> -->
+                    <p class="">{{ post.description }}</p>
+                    <router-link :to="{ name: 'Show', params: { id: post.id }}" class="blog_details"><strong>Read more &hellip;</strong></router-link>
+                </div>
+                <div class="blog_container" v-else><h2 class="page_message">{{ status }}</h2></div>
             </div>
             <Sidebar/>
-        </div>        
+        </div>
+        <Footer/>   
     </div>
 </template>
 
 <script>
+import BlogService from '@/services/BlogService'
 import Header from '@/components/partials/Header.vue'
+import Footer from '@/components/partials/Footer.vue'
 import Sidebar from '@/components/partials/Sidebar.vue'
 export default {
     name: 'index',
     components: {
         Header,
-        Sidebar
+        Sidebar,
+        Footer
     },
     props: {
     },
     data () {
         return {
-            post: []
+            posts: [],
+            loading: false,
+            status: 'No post yet'
+        }
+    },
+    computed: {
+        blogLength () {
+            if (!this.posts.length > 0) {
+                return false
+            }
+            return true
+        }
+    },
+    mounted () {
+        this.refreshBlogs()
+    },
+    methods: {
+        async refreshBlogs () {
+            this.loading = true
+            const response = await BlogService.getBlogs()
+            this.posts = response.data
+            this.loading = false
         }
     }
 }

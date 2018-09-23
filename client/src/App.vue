@@ -23,6 +23,9 @@ h1,h2,h3,h4,h5,h6,ul,li,p,hr, div, header, footer {
   margin: 0;
   padding: 0;
 }
+.active {
+	border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
 .container {
   display: grid;
   grid-template-columns: 100%;
@@ -81,6 +84,12 @@ h1,h2,h3,h4,h5,h6,ul,li,p,hr, div, header, footer {
   grid-template-rows: auto;
   grid-template-areas:
   "blog_container";
+}
+.footer {
+  grid-area: footer;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr
 }
 .page_content {
   font-size: 1em;

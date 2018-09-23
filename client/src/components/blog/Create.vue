@@ -18,17 +18,21 @@
                 </form>
             </div><Sidebar/>
         </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
+import BlogService from '@/services/BlogService'
 import Header from '@/components/partials/Header.vue'
+import Footer from '@/components/partials/Footer.vue'
 import Sidebar from '@/components/partials/Sidebar.vue'
 export default {
     name: 'create',
     components: {
         Header,
-        Sidebar
+        Sidebar,
+        Footer
     },
     props: {
     },
@@ -37,12 +41,27 @@ export default {
             post: {
                 title: '',
                 description: ''
-            }
+            },
+            loading: '',
+            status: ''
         }
     },
     computed: {
         formIsFilled () {
             return this.post.title !== '' && this.post.description !== ''
+        }
+    },
+    methods: {
+        async onCreatePost () {
+            if (!this.formIsFilled) {
+                this.loading = 'All the fields are required'
+            } else {
+                this.loading = 'Sending Post, please wait'
+                await BlogService.createBlog(this.post)
+                console.log('Sent successfully')
+                this.loading = ''
+                this.$router.push({name: 'index'})
+            }
         }
     }
 }

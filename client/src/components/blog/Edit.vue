@@ -4,7 +4,7 @@
         <div class="main_container">
             <div class="page_content">
                 <div class="page_head"><h2 class="page_header">Update News</h2><hr class="scotch-rule"></div>
-                <form enctype="multipart/form-data" @submit.prevent="onCreatePost">
+                <form enctype="multipart/form-data" @submit.prevent="onUpdateBlog">
                     <div class="form-field">
                         <label for="title">Post Title: <span class="page_form_input_required">*</span></label>
                         <input type="text" name="title" value="" v-model="post.title" placeholder="Enter blog title" class="page_form_input" id="title" aria-required="true" aria-invalid="false" required autofocus />
@@ -18,17 +18,21 @@
                 </form>
             </div><Sidebar/>
         </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
+import BlogService from '@/services/BlogService'
 import Header from '@/components/partials/Header.vue'
+import Footer from '@/components/partials/Footer.vue'
 import Sidebar from '@/components/partials/Sidebar.vue'
 export default {
     name: 'edit',
     components: {
         Header,
-        Sidebar
+        Sidebar,
+        Footer
     },
     props: {
     },
@@ -37,12 +41,28 @@ export default {
             post: {
                 title: '',
                 description: ''
-            }
+            },
+            loading: '',
+            status: ''
         }
     },
     computed: {
         formIsFilled () {
             return this.post.title !== '' && this.post.description !== ''
+        }
+    },
+    methods: {
+        async onUpdateBlog () {
+            if (!this.formIsFilled) {
+                this.loading = 'All the fields are required'
+            } else {
+                this.loading = 'Updating Post, please wait'
+                await BlogService.updateBlog(this.post)
+                console.log('Sent successfully')
+                this.loading = 'Sent successfully'
+                this.$router.push({name: 'index'})
+                this.loading = ''
+            }
         }
     }
 }

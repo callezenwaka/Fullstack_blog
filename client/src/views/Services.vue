@@ -10,17 +10,20 @@
             </div>
             <Sidebar/>
         </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
 import Header from '@/components/partials/Header.vue'
+import Footer from '@/components/partials/Footer.vue'
 import Sidebar from '@/components/partials/Sidebar.vue'
 export default {
     name: 'index',
     components: {
         Header,
-        Sidebar
+        Sidebar,
+        Footer
     },
     props: {
     },

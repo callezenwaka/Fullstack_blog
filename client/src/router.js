@@ -5,7 +5,6 @@ import Create from './components/blog/Create.vue'
 import Edit from './components/blog/Edit.vue'
 import Index from './components/blog/Index.vue'
 import Show from './components/blog/Show.vue'
-import aboutUs from './components/aboutUs.vue'
 
 Vue.use(Router)
 
@@ -18,7 +17,6 @@ export default new Router({
     { path: '/blogs/publish', name: 'create', component: Create },
     { path: '/blogs/:id/edit', name: 'edit', component: Edit },
     { path: '/blogs/:id', name: 'show', component: Show },
-    { path: '/aboutUs', name: 'aboutUs', component: aboutUs },
     { path: '/career', name: 'career', component: () => import('./views/Career.vue') },
     { path: '/services', name: 'services', component: () => import('./views/Services.vue') },
     {
