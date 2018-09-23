@@ -8,7 +8,7 @@
                 <Delete :toggleDialog=toggleDialog @toggleDelete="onToggleDialog"/>
                 </template>
                 <div class="page_head"><h2 class="page_header"><strong>{{ post.title }}</strong></h2><hr class="scotch-rule"></div>
-                <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).fromNow() }}</b></small></span></p>
+                <!-- <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).fromNow() }}</b></small></span></p> -->
                 <p class="">{{ post.description }}</p>
                 <router-link v-if="!loading" :to="{ name: 'edit', params: { id: post.id }}" class=" page_button blog_details"><strong>Edit Post</strong></router-link>
                 <!-- <router-link :to="{ name: 'Posts', params: { }}" class=" page_button blog_details"><strong>Delete Post</strong></router-link> -->
@@ -27,7 +27,7 @@ import Footer from '@/components/partials/Footer.vue'
 import Sidebar from '@/components/partials/Sidebar.vue'
 import Delete from '@/components/blog/Delete.vue'
 export default {
-    name: 'index',
+    name: 'show',
     components: {
         Header,
         Sidebar,

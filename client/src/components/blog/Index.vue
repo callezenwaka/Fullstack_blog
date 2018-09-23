@@ -9,16 +9,16 @@
                 </div>
                 <div class="blog_container" v-if="blogLength" v-for="post in posts" :key="post.id">
                     <p class="blog_header"><strong>{{ post.title }}</strong></p><hr>
-                    <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).fromNow() }}</b></small></span></p>
+                    <!-- <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).fromNow() }}</b></small></span></p> -->
                     <!-- <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).calendar() }}</b></small></span></p> -->
                     <p class="">{{ post.description }}</p>
-                    <router-link :to="{ name: 'Show', params: { id: post.id }}" class="blog_details"><strong>Read more &hellip;</strong></router-link>
+                    <!-- <router-link :to="{ name: 'Show', params: { id: post.id }}" class="blog_details"><strong>Read more &hellip;</strong></router-link> -->
                 </div>
                 <div class="blog_container" v-else><h2 class="page_message">{{ status }}</h2></div>
             </div>
             <Sidebar/>
         </div>
-        <Footer/>   
+        <!-- <Footer/>    -->
     </div>
 </template>
 
@@ -58,6 +58,7 @@ export default {
         async refreshBlogs () {
             this.loading = true
             const response = await BlogService.getBlogs()
+            console.log(response.data)
             this.posts = response.data
             this.loading = false
         }
@@ -66,6 +67,26 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.blog_container {
+  max-width: 90%;
+  padding: 15px;
+  margin: 15px auto;
+  background-color: #f4f4f4;
+}
+.blog_header {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 8px 0;
+}
+.blog_details {
+  color: #000000;
+  font-weight: bold;
+  line-height: 2em;
+  font-style: normal;
+}
+.blog_content {
+  padding: 0 10px 10px 10px;
+}
 .scotch-rule:first-child {
     margin: 0 0 6px;
 }

@@ -58,7 +58,7 @@ h1,h2,h3,h4,h5,h6,ul,li,p,hr, div, header, footer {
   grid-area: page_content;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 15% 85%;
+  /* grid-template-rows: 15% 85%; */
   grid-template-areas:
   "page_head"
   "blog_content";
