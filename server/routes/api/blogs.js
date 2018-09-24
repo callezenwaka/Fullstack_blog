@@ -21,7 +21,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     // get data from form and save to DB
-    await Blog.create(req.body.blog, (err, blog) => {
+    await Blog.create(req.body, (err, blog) => {
       //blog.save();
       res.send({
         message: 'Added document to DB'

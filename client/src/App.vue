@@ -100,6 +100,9 @@ h1,h2,h3,h4,h5,h6,ul,li,p,hr, div, header, footer {
   text-transform: uppercase;
   margin: 8px 0;
 }
+.page_message {
+  color: #090D11;
+}
 .scotch-rule:first-child {
     margin: 0 0 6px;
 }

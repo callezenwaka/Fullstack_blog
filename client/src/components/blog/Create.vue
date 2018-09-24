@@ -14,9 +14,14 @@
                         <label for="description">Post Description  <span class="page_form_input_required">*</span></label>
                         <textarea name="description" v-model="post.description" placeholder="Enter blog description" cols="40" rows="10" class="page_form_input" id="description" aria-required="true" aria-invalid="false"></textarea>
                     </div>
-                    <button type="submit" class="form_button" v-bind:class="{ page_button: formIsFilled }" :disabled="!formIsFilled">Publish Post</button>
+                    <div>
+                        <button type="submit" class="form_button" v-bind:class="{ page_button: formIsFilled }" :disabled="!formIsFilled">Publish Post</button>
+                    </div>
+                    <span class="page_message" v-if="loading">{{ loading }} &hellip;</span>
+                    <span class="page_message">{{ status }}</span>
                 </form>
-            </div><Sidebar/>
+            </div>
+            <Sidebar/>
         </div>
         <Footer/>
     </div>
@@ -57,6 +62,7 @@ export default {
                 this.loading = 'All the fields are required'
             } else {
                 this.loading = 'Sending Post, please wait'
+                console.log(this.post)
                 await BlogService.createBlog(this.post)
                 console.log('Sent successfully')
                 this.loading = ''
