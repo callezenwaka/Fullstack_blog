@@ -18,7 +18,7 @@
             </div>
             <Sidebar/>
         </div>
-        <!-- <Footer/>    -->
+        <Footer/>   
     </div>
 </template>
 
