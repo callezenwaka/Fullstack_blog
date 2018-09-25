@@ -104,6 +104,20 @@ h1,h2,h3,h4,h5,h6,ul,li,p,hr, div, header, footer {
 .page_message {
   color: #090D11;
 }
+.page_button {
+  padding: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1em;
+  font-style: normal;
+  cursor: pointer;
+  width: 30%;
+  text-align: center;
+  background: #1b1c1d;
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
 .scotch-rule:first-child {
     margin: 0 0 6px;
 }

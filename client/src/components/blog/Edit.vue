@@ -7,14 +7,18 @@
                 <form enctype="multipart/form-data" @submit.prevent="onUpdateBlog">
                     <div class="form-field">
                         <label for="title">Post Title: <span class="page_form_input_required">*</span></label>
-                        <input type="text" name="title" value="" v-model="post.title" placeholder="Enter blog title" class="page_form_input" id="title" aria-required="true" aria-invalid="false" required autofocus />
+                        <input type="text" name="title" v-model="post.title" placeholder="Enter blog title" class="page_form_input" id="title" aria-required="true" aria-invalid="false" required autofocus />
                     </div>
                     <br>
                     <div class="form-field">
                         <label for="description">Post Description  <span class="page_form_input_required">*</span></label>
                         <textarea name="description" v-model="post.description" placeholder="Enter blog description" cols="40" rows="10" class="page_form_input" id="description" aria-required="true" aria-invalid="false"></textarea>
                     </div>
-                    <button type="submit" class="form_button" v-bind:class="{ page_button: formIsFilled }" :disabled="!formIsFilled">Update</button>
+                    <div>
+                        <button type="submit" class="form_button" v-bind:class="{ page_form_button: formIsFilled }" :disabled="!formIsFilled">Update Post</button>
+                    </div>
+                    <span class="page_message" v-if="loading">{{ loading }} &hellip;</span>
+                    <span class="page_message">{{ status }}</span>
                 </form>
             </div><Sidebar/>
         </div>
@@ -38,10 +42,7 @@ export default {
     },
     data () {
         return {
-            post: {
-                title: '',
-                description: ''
-            },
+            post: {},
             loading: '',
             status: ''
         }
@@ -51,7 +52,17 @@ export default {
             return this.post.title !== '' && this.post.description !== ''
         }
     },
+    async created () {
+        this.populateBlog()
+    },
     methods: {
+        async populateBlog () {
+            const response = await BlogService.getBlog({id: this.$route.params.id})
+            console.log( response.data)
+            this.post = Object.assign({}, response.data.blog)
+            // this.post = response.data
+            this.loading = false
+        },
         async onUpdateBlog () {
             if (!this.formIsFilled) {
                 this.loading = 'All the fields are required'
@@ -76,7 +87,7 @@ button:focus {
   outline: none;
   border-bottom: 2px solid #1b1c1d;
 }
-.page_button {
+.page_form_button {
   padding: 5px;
   font-size: 1em;
   font-weight: bold;
@@ -85,6 +96,9 @@ button:focus {
   background: #1b1c1d;
   color: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.9);
+}
+.page_form_button:hover {
+    color: rgba(255, 255, 255, 0.5);
 }
 .page_form_input {
   width: 100%;

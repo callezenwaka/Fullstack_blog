@@ -3,16 +3,17 @@
         <Header/>
         <div class="main_container">
             <div class="page_content">
-               <span v-show="loading" class="page_message">Loading &hellip;</span>
+                <span v-show="loading" class="page_message">Loading &hellip;</span>
                 <template v-if="this.toggleDialog">
-                <Delete :toggleDialog=toggleDialog @toggleDelete="onToggleDialog"/>
+                    <Delete :toggleDialog=toggleDialog @toggleDelete="onToggleDialog"/>
                 </template>
                 <div class="page_head"><h2 class="page_header"><strong>{{ post.title }}</strong></h2><hr class="scotch-rule"></div>
                 <!-- <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).fromNow() }}</b></small></span></p> -->
                 <p class="">{{ post.description }}</p>
-                <router-link v-if="!loading" :to="{ name: 'edit', params: { id: post.id }}" class=" page_button blog_details"><strong>Edit Post</strong></router-link>
-                <!-- <router-link :to="{ name: 'Posts', params: { }}" class=" page_button blog_details"><strong>Delete Post</strong></router-link> -->
-                <button class="page_button" @click.prevent="toggleDialog = !toggleDialog">Delete Post</button>
+                <div style="display: flex; flex-direction: row;">
+                    <router-link v-if="!loading" :to="{ name: 'edit', params: { id: $route.params.id }}" class="page_button "><strong>Edit Post</strong></router-link>
+                    <button class="page_button" @click.prevent="toggleDialog = !toggleDialog">Delete Post</button>
+                </div>
             </div>
             <Sidebar/>
         </div>
@@ -49,15 +50,16 @@ export default {
     },
     methods: {
         onToggleDialog () {
-        this.toggleDialog = false
-    },
-    async populateBlog () {
-        const response = await BlogService.getBlog({id: this.$route.params.id})
-        this.post = Object.assign({}, response.data.post)
-        // this.post = response.data
-        this.loading = false
+            this.toggleDialog = false
+        },
+        async populateBlog () {
+            const response = await BlogService.getBlog({id: this.$route.params.id})
+            console.log( response.data)
+            this.post = Object.assign({}, response.data.blog)
+            // this.post = response.data
+            this.loading = false
+        }
     }
-  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

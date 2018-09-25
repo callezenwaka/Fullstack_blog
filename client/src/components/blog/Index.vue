@@ -7,12 +7,12 @@
                 <div v-show="loading" class="blog_container">
                     <span class="page_message">Loading &hellip;</span>
                 </div>
-                <div class="blog_container" v-if="blogLength" v-for="post in posts" :key="post.id">
+                <div class="blog_container" v-if="blogLength" v-for="post in posts" :key="post._id">
                     <p class="blog_header"><strong>{{ post.title }}</strong></p><hr>
                     <!-- <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).fromNow() }}</b></small></span></p> -->
                     <!-- <p class="blog_sub_head"><span><small><b>Posted by Admin</b></small></span><span><small><b>{{ moment(post.timestamp).calendar() }}</b></small></span></p> -->
                     <p class="">{{ post.description }}</p>
-                    <!-- <router-link :to="{ name: 'Show', params: { id: post.id }}" class="blog_details"><strong>Read more &hellip;</strong></router-link> -->
+                    <router-link :to="{ name: 'show', params: { id: post._id }}" class="blog_details"><strong>Read more &hellip;</strong></router-link>
                 </div>
                 <div class="blog_container" v-else><h2 class="page_message">{{ status }}</h2></div>
             </div>

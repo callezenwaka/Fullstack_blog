@@ -32,7 +32,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-/* SHOW A POST */
+/* GET A SINGLE POST */
 router.get('/:id', async (req, res, next) => {
   try {
     //find the blog with provided ID

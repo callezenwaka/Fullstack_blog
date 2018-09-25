@@ -4,8 +4,8 @@
 		<div class="page_head"><h2 class="page_header"><strong><%=blog.title%></strong></h3><hr class="scotch-rule"></div>
 		<div>
 			<p class=""><%=blog.description%></p>
-	    <a class="blog_details" href="/api/v1/blogs/<%= blog._id %>/edit">Edit Post</a>
-	    <form action="/api/v1/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+	    <a class="blog_details" href="/blogs/<%= blog._id %>/edit">Edit Post</a>
+	    <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
 	      <button class="">Delete Post</button>
 	    </form>
 		</div>

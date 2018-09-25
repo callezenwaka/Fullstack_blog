@@ -27,14 +27,13 @@ export default {
 		this.populateBlog()
 	},
 	methods: {
-		toggleModal (event) {
+		toggleModal () {
 			this.$emit('toggleDelete', this.cancelDelete)
 		},
 		async populateBlog () {
 			const response = await BlogService.getBlog({id: this.$route.params.id})
-			this.post = response.data.post
+			this.post = response.data.blog
 			this.loading = false
-			console.log(this.post)
 		// this.model = Object.assign({}, post_id)
 		},
 		async onDeletePost (id) {

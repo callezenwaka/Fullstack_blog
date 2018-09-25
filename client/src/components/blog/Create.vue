@@ -15,7 +15,7 @@
                         <textarea name="description" v-model="post.description" placeholder="Enter blog description" cols="40" rows="10" class="page_form_input" id="description" aria-required="true" aria-invalid="false"></textarea>
                     </div>
                     <div>
-                        <button type="submit" class="form_button" v-bind:class="{ page_button: formIsFilled }" :disabled="!formIsFilled">Publish Post</button>
+                        <button type="submit" class="form_button" v-bind:class="{ page_form_button: formIsFilled }" :disabled="!formIsFilled">Publish Post</button>
                     </div>
                     <span class="page_message" v-if="loading">{{ loading }} &hellip;</span>
                     <span class="page_message">{{ status }}</span>
@@ -81,7 +81,7 @@ button:focus {
   outline: none;
   border-bottom: 2px solid #1b1c1d;
 }
-.page_button {
+.page_form_button {
   padding: 5px;
   font-size: 1em;
   font-weight: bold;

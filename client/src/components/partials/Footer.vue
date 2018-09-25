@@ -16,8 +16,8 @@ export default {
 <style scoped>
 .footer {
 	background-color: #1b1c1d;
-  	color: rgba(255, 255, 255, 0.9);
-  	min-height: 45px;
+  color: rgba(255, 255, 255, 0.9);
+  min-height: 45px;
 }
 .footer {
   text-align: center;

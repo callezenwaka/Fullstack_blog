@@ -10,7 +10,7 @@ export default {
   updateBlog (params) {
     return Api().put('blogs/' + params.id, params)
   },
-  getSingleBlog (params) {
+  getBlog (params) {
     return Api().get('blogs/' + params.id)
   },
   deleteBlog (_id) {
